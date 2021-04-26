@@ -1,16 +1,33 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import React, { useState } from 'react';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import Search from '../Search';
+import Logo from '../../assets/cocktails-logo.png';
 
-import './styles.scss';
+import { Container } from './styles';
 
-const Header: React.FC = () => (
-  <section className="header_container">
-    <div className="header_logo">
-      <a href="/">
-        <img src="https://www.thecocktaildb.com/images/logo.png" alt="logomarca" />
-      </a>
-    </div>
-  </section>
+const Header: React.FC = () => {
+  const [hasFavorites, setHasFavorite] = useState(false);
 
-);
+  return (
+    <Container>
+      <div className="header-content">
+        <div className="header-logo">
+          <img src={Logo} alt="logo" />
+        </div>
+        <aside className="header-aside">
+          <Search />
+          <div className="header-favorite-area">
+            {hasFavorites
+              ? (<button type="button" onClick={() => setHasFavorite(!hasFavorites)}> <AiFillStar size={24} color="#ce2b9d" /></button>)
+              : (<button type="button" onClick={() => setHasFavorite(!hasFavorites)}> <AiOutlineStar size={24} color="fff" /></button>)}
+          </div>
+        </aside>
+
+      </div>
+
+    </Container>
+  );
+};
 
 export default Header;
